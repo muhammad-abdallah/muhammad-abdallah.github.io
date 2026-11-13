@@ -4,91 +4,327 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muhammad Abdallah | Portfolio</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f5f7fb;
-            color: #242936;
+        :root {
+            --bg-color: #0f172a;
+            --surface-color: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-color: #38bdf8;
+            --accent-hover: #0284c7;
+        }
+
+        * {
             margin: 0;
-            line-height: 1.7;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
         }
-        header {
-            background: #192b49;
-            color: white;
-            padding: 65px 20px;
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: center;
+            padding: 1.5rem;
+            background-color: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        nav a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        .hero {
             text-align: center;
-        }
-        header h1 { margin-bottom: 5px; }
-        main {
+            padding: 8rem 2rem 6rem;
             max-width: 800px;
-            margin: 35px auto;
-            padding: 0 20px;
+            margin: 0 auto;
         }
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+        .hero h2 {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            margin-bottom: 2.5rem;
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--surface-color);
+            color: var(--text-primary);
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            background-color: var(--surface-color);
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+        .btn.primary {
+            background-color: var(--accent-color);
+            color: #0f172a;
+            border-color: var(--accent-color);
+        }
+        .btn.primary:hover {
+            background-color: var(--accent-hover);
+            border-color: var(--accent-hover);
+            color: #fff;
+        }
+
+        /* Layout Sections */
         section {
-            background: white;
-            padding: 25px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px #00000010;
+            padding: 4rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
         }
-        a { color: #2466b3; }
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--text-primary);
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-color);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* About & Skills */
+        .about-text {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+        }
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+        .skill-tag {
+            background-color: var(--surface-color);
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+        .card {
+            background-color: var(--surface-color);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(56, 189, 248, 0.3);
+        }
+        .card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        .card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+        .card-tech {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .card-tech span {
+            font-size: 0.8rem;
+            background-color: rgba(56, 189, 248, 0.1);
+            color: var(--accent-color);
+            padding: 0.3rem 0.7rem;
+            border-radius: 6px;
+        }
+
+        /* Footer */
         footer {
             text-align: center;
-            padding: 25px;
-            color: #666;
+            padding: 2rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 4rem;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero h2 { font-size: 1rem; }
+            nav ul { gap: 1rem; }
+            section { padding: 3rem 1.5rem; }
         }
     </style>
 </head>
 <body>
-    <header>
+
+    <!-- Sticky Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
         <h1>Muhammad Abdallah</h1>
-        <p>Computer Science Master's Student | Cloud & DevOps Enthusiast</p>
+        <h2>Computer Science Master's Student | Cloud & DevOps Enthusiast</h2>
+        
+        <div class="action-buttons">
+            <!-- IMPORTANT: Upload your CV PDF to your repo and update this href -->
+            <a href="Muhammad_Abdallah_CV.pdf" class="btn primary" target="_blank">
+                <i class="fas fa-file-pdf"></i> View Resume
+            </a>
+            
+            <!-- IMPORTANT: Add your actual LinkedIn profile URL here -->
+            <a href="https://www.linkedin.com/in/muhammad-abdallah-a131612a0/" class="btn" target="_blank">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            
+            <a href="https://github.com/muhammad-abdallah" class="btn" target="_blank">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+        </div>
     </header>
 
-    <main>
-        <section>
-            <h2>About Me</h2>
-            <p>
-                I am a Master's student in Computer Science (CPS2,
-                AI & IoT) at Université Jean Monnet and Mines Saint-Étienne.
-                I am interested in cloud computing, DevOps,
-                distributed systems, and software engineering.
-            </p>
-        </section>
+    <!-- About Section -->
+    <section id="about">
+        <h3 class="section-title">About Me</h3>
+        <p class="about-text">
+            I am a Master's student in Computer Science (CPS2, AI & IoT) studying jointly at 
+            <strong>Université Jean Monnet</strong> and <strong>Mines Saint-Étienne</strong>. 
+            I specialize in cloud computing, DevOps, distributed systems, and software engineering, 
+            focusing on building scalable and resilient infrastructure.
+        </p>
+    </section>
 
-        <section>
-            <h2>Technical Interests</h2>
-            <p>
-                Java, Python, Linux, Git, Maven, Cloud Computing,
-                DevOps, and Distributed Systems.
-            </p>
-        </section>
+    <!-- Technical Skills Section -->
+    <section id="skills">
+        <h3 class="section-title">Technical Expertise</h3>
+        <div class="skills-grid">
+            <span class="skill-tag"><i class="fab fa-java"></i> Java</span>
+            <span class="skill-tag"><i class="fab fa-python"></i> Python</span>
+            <span class="skill-tag"><i class="fab fa-linux"></i> Linux</span>
+            <span class="skill-tag"><i class="fab fa-git-alt"></i> Git</span>
+            <span class="skill-tag"><i class="fas fa-server"></i> Maven</span>
+            <span class="skill-tag"><i class="fas fa-cloud"></i> Cloud Computing</span>
+            <span class="skill-tag"><i class="fas fa-infinity"></i> DevOps</span>
+            <span class="skill-tag"><i class="fas fa-network-wired"></i> Distributed Systems</span>
+            <span class="skill-tag"><i class="fas fa-robot"></i> CI/CD Pipelines</span>
+        </div>
+    </section>
 
-        <section>
-            <h2>Projects</h2>
-            <h3>Terminal Quest</h3>
-            <p>
-                A Java terminal-based adventure game built with Maven,
-                including automated testing and GitHub Actions.
-            </p>
-            <a href="https://github.com/muhammad-abdallah/terminal-quest">
-                View project on GitHub
-            </a>
-        </section>
+    <!-- Projects Section -->
+    <section id="projects">
+        <h3 class="section-title">Featured Projects</h3>
+        <div class="projects-grid">
+            
+            <!-- Project 1 -->
+            <div class="card">
+                <h4>Terminal Quest</h4>
+                <div class="card-tech">
+                    <span>Java</span>
+                    <span>Maven</span>
+                    <span>GitHub Actions</span>
+                    <span>JUnit</span>
+                </div>
+                <p>A Java terminal-based adventure game built with Maven, integrating automated testing and CI/CD pipelines via GitHub Actions.</p>
+                <a href="https://github.com/muhammad-abdallah/terminal-quest" class="btn" target="_blank">
+                    <i class="fas fa-code-branch"></i> Source Code
+                </a>
+            </div>
 
-        <section>
-            <h2>Contact</h2>
-            <p>
-                Find my projects and contributions on
-                <a href="https://github.com/muhammad-abdallah">
-                    GitHub
-                </a>.
-            </p>
-        </section>
-    </main>
+            <!-- Placeholder for Project 2 -->
+            <div class="card">
+                <h4>Cloud Infrastructure Lab</h4>
+                <div class="card-tech">
+                    <span>AWS/Azure</span>
+                    <span>Terraform</span>
+                    <span>Docker</span>
+                </div>
+                <p>Deploying distributed systems and containerized applications across cloud environments. (Coming soon)</p>
+                <a href="https://github.com/muhammad-abdallah" class="btn" target="_blank">
+                    <i class="fab fa-github"></i> View Profile
+                </a>
+            </div>
+            
+        </div>
+    </section>
 
+    <!-- Footer -->
     <footer>
-        <p>© 2026 Muhammad Abdallah</p>
+        <p>© 2026 Muhammad Abdallah. Designed & Built for the Cloud.</p>
     </footer>
+
 </body>
 </html>
